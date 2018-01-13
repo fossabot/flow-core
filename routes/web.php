@@ -11,25 +11,36 @@
 |
 */
 
+// Basic Routes
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Auth Routes
 Route::get('/login', function () {
     return view('login');
-});
-
-Route::get('/phpinfo', function () {
-    phpinfo();
 });
 
 Route::post('/2fa', function () {
     return redirect(URL()->previous());
 })->name('2fa')->middleware('2fa');
 
-Auth::routes();
-
 Route::get('/complete-registration', 'Auth\RegisterController@completeRegistration');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Auth::routes();
+
+// Utilities Route
+Route::get('/phpinfo', function () {
+    phpinfo();
+});
+
+// Resource Routes
+Route::resource('users', 'UserController');
+Route::resource('roles', 'RoleController');
+Route::resource('permissions', 'PermissionController');
+Route::resource('companies', 'CompanyController');
+
+// Application Routes
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', '2fa']);
 

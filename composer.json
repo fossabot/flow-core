@@ -10,9 +10,11 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.5",
         "pragmarx/google2fa": "^2.0",
         "pragmarx/google2fa-laravel": "^0.1.4",
-        "santigarcor/laratrust": "^5.0"
+        "rachidlaasri/laravel-installer": "^3.2",
+        "spatie/laravel-permission": "^2.7"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
