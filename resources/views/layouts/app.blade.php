@@ -20,7 +20,7 @@
 <body>
 
 	@if (Auth::check())
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:25px;">
 		<a class="navbar-brand logo" href="#">FLOW</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

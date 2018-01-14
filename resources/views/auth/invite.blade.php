@@ -27,13 +27,16 @@
                             @endisset
 
                             <div id="usernamegroup" class="inputgroup">
-                                <label for="username" class="label">Email</label>
-                                <input class="input r4 wide mb16 mt8 username" type="image" id="qr-image" style="display: block;" src="{{ $QR_Image }}">
+                                <label for="invite-code" class="label">Enter Your Company's Invite Code</label>
+                                <input class="input r4 wide mb16 mt8 username" type="text" value="" name="invite-code" id="invite-code" style="display: block;" required="">
 
-                                <a href="/register/complete"><btn class="button r4 wide primary" value="Register"></btn></a>
+                                <input class="button r4 wide primary" type="submit" id="Register" name="Register" value="Continue">
                             </div>
 
                         </form>
+                        <div class="w0 links bt pt16 mb20">
+                            <a id="forgot_password_link" class="fl small" href="{{ route('login') }}">Go Back</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -48,5 +51,4 @@
 
 <div id="right">
 </div>
-
 @endsection

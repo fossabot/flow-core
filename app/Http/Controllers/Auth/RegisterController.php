@@ -62,6 +62,15 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function checkInvite(Request $request) {
+        $invite_data = $request->all();
+
+        if(Doorman::check($invite_data['invite'])){
+            Doorman::redeem($invite_data['invite']);
+            return redirect('/register');
+        }
+    }
+
     public function register(Request $request)
     {
         //Validate the incoming request using the already included validator method

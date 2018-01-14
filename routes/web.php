@@ -25,7 +25,8 @@ Route::post('/2fa', function () {
     return redirect(URL()->previous());
 })->name('2fa')->middleware('2fa');
 
-Route::get('/complete-registration', 'Auth\RegisterController@completeRegistration');
+Route::get('/register/invite', function () { return view('auth.invite'); });
+Route::get('/register/complete', 'Auth\RegisterController@completeRegistration');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
@@ -44,3 +45,5 @@ Route::resource('companies', 'CompanyController');
 // Application Routes
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', '2fa']);
 
+// Admin Routes
+Route::get('/admin/companies', 'CompanyController@index')->name('admin/company')->middleware(['auth', '2fa']);

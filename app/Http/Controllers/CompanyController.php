@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Permission;
 
 use Auth;
 use Session;
+use DB;
 
 class CompanyController extends Controller
 {
@@ -23,7 +24,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = DB::table('companies')->get();
+        return view('admin.companies', ['companies' => $companies]);
     }
 
     /**
