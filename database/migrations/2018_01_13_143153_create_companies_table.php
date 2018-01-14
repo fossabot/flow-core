@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('fax_num');
             $table->string('website');
             $table->string('role_name');
+            $table->string('invite_code');
             $table->timestamps();
         });
     }

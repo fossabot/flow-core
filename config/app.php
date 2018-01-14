@@ -178,7 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\UsersServiceProvider::class,
     ],
 
     /*
@@ -230,6 +230,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Doorman' => Clarkeash\Doorman\Facades\Doorman::class,
+        'UserInfo' => App\Helpers\Users\UserInfo::class,
     ],
 
 ];

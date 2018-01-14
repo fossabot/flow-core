@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
 
@@ -49,7 +49,7 @@
                                 <h5>Company Info</h5>
 
                                 <label for="company" class="label">Company</label>
-                                <input class="input r4 wide mb16 mt8 username" type="text" id="company" name="company" autocomplete="off" required="">
+                                <input class="input r4 wide mb16 mt8 username" type="text" id="company" name="company" autocomplete="off" required="" value="{{ session('company_name') }}" readonly="">
 
                                 <input class="button r4 wide primary" type="submit" id="Register" name="Register" value="Register">
                             </div>

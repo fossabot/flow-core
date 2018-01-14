@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DB;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FA\Google2FA;
+use Clarkeash\Doorman\Facades\Doorman;
 
 class RegisterController extends Controller
 {
@@ -65,9 +67,15 @@ class RegisterController extends Controller
     public function checkInvite(Request $request) {
         $invite_data = $request->all();
 
-        if(Doorman::check($invite_data['invite'])){
-            Doorman::redeem($invite_data['invite']);
-            return redirect('/register');
+        if(Doorman::check($invite_data['invite-code'])){
+            //Doorman::redeem($invite_data['invite-code']);
+
+            $company = DB::table('companies')->where('invite_code', $invite_data['invite-code'])->value('company_name');
+            //$request->session()->flash('invite_code', $invite_data['invite-code']);
+            session(['invite_code' => $invite_data['invite-code']]);
+            return redirect('/register')->with('company_name', $company);
+        }else{
+            return back()->with('error', 'Code is invalid');
         }
     }
 
@@ -81,6 +89,8 @@ class RegisterController extends Controller
 
         // Save the registration data in an array
         $registration_data = $request->all();
+
+        $registration_data["invite_code"] = session('invite_code');
 
         // Add the secret key to the registration data
         $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
@@ -97,7 +107,7 @@ class RegisterController extends Controller
         );
 
         // Pass the QR barcode image to our view
-        return view('2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
+        return view('2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret'], 'invite_code' => $registration_data['invite_code']]);
     }
 
     public function completeRegistration(Request $request)
@@ -117,7 +127,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $google2fa = new Google2FA();
+        Doorman::redeem($data['invite_code']);
 
         return User::create([
             'name' => $data['name'],

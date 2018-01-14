@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
 
@@ -12,19 +12,15 @@
 
                 <div id="content" style="display: block;">
                     <div id="theloginform" style="display: block;">
-                        <form name="register" method="post" id="login_form" action="{{ route('register') }}" target="_top" autocomplete="off" novalidate="novalidate">
+                        <form name="register" method="post" id="login_form" action="{{ route('register/invite2') }}" target="_top" autocomplete="off" novalidate="novalidate">
 
                             {{ csrf_field() }}
 
-                            @isset ($errors)
+                            @if (session('error'))
                             <div class="loginError" id="error" style="display: block;">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li> {{ $error }} </li>
-                                    @endforeach
-                                </ul>
+                                {{ session('error') }}
                             </div>
-                            @endisset
+                            @endif
 
                             <div id="usernamegroup" class="inputgroup">
                                 <label for="invite-code" class="label">Enter Your Company's Invite Code</label>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login')
 
 @section('content')
 
@@ -50,7 +50,7 @@
 
                 <div id="signup" class="tc mt24" style="display: block;">
                     <p class="di mr16">Not a customer?</p>
-                    <a class="button secondary" id="signup_link" href="{{ route('register') }}">Try for Free</a>
+                    <a class="button secondary" id="signup_link" href="{{ route('register/invite') }}">Try for Free</a>
                 </div>
                 
             </div>

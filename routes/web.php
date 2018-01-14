@@ -25,8 +25,9 @@ Route::post('/2fa', function () {
     return redirect(URL()->previous());
 })->name('2fa')->middleware('2fa');
 
-Route::get('/register/invite', function () { return view('auth.invite'); });
-Route::get('/register/complete', 'Auth\RegisterController@completeRegistration');
+Route::get('/register/invite', function () { return view('auth.invite'); })->name('register/invite');
+Route::post('/register/invite', 'Auth\RegisterController@checkInvite')->name('register/invite2');
+Route::get('/register/complete', 'Auth\RegisterController@completeRegistration')->name('register/complete');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();

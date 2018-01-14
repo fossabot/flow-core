@@ -9,12 +9,13 @@ use Spatie\Permission\Models\Permission;
 use Auth;
 use Session;
 use DB;
+use Clarkeash\Doorman\Facades\Doorman;
 
 class CompanyController extends Controller
 {
 
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']);
+        //$this->middleware(['auth', 'isAdmin']);
     }
 
     /**
@@ -35,7 +36,10 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Role::get();
+        /*$invite = Doorman::generate()->uses(100)->make();*/
+        $invite = DB::table('invites')->get();
+        return view('admin.companies-create', ['roles'=>$roles,'invites'=>$invite]);
     }
 
     /**
@@ -46,7 +50,25 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        foreach($data['roles'] as $role) {
+            $role_r = Role::where('id', '=', $role)->firstOrFail();
+            foreach($data['invites'] as $invite){
+                DB::table('companies')->insert([
+                    'company_name'=> $data['name'],
+                    'address'=> $data['address'],
+                    'tel_num'=> $data['telnum'],
+                    'fax_num'=> $data['faxnum'],
+                    'website'=> $data['website'],
+                    'role_name'=> $role_r,
+                    'invite_code'=> $invite
+                ]);      
+            }
+        }
+        return redirect()->route('companies.index')
+            ->with('flash_message',
+             'Company added!');
     }
 
     /**
@@ -91,6 +113,9 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('companies')->where('id', $id)->delete();
+        return redirect()->route('companies.index')
+            ->with('flash_message',
+             'Company deleted!');
     }
 }

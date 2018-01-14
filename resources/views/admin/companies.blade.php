@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Invite Code</th>
                 </tr>
             </thead>
 
@@ -20,7 +21,8 @@
                 @foreach ($companies as $user)
                 <tr>
 
-                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->company_name }}</td>
+                    <td>{{ $user->invite_code }}</td>
                     <td>
                     <a href="{{ route('companies.edit', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
 
