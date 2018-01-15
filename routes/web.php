@@ -47,4 +47,5 @@ Route::resource('companies', 'CompanyController');
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', '2fa']);
 
 // Admin Routes
-Route::get('/admin/companies', 'CompanyController@index')->name('admin/company')->middleware(['auth', '2fa']);
+Route::get('/admin/index', function(){ return view('admin.index'); })->middleware(['auth', 'isAdmin']);
+Route::get('/admin/companies', 'CompanyController@index')->name('admin/company')->middleware(['auth', 'isAdmin']);

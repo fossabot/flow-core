@@ -8,7 +8,9 @@
     <title>Flow: @yield('title')</title>
 
     <link href="/css/app.css?v@php echo time(); @endphp" rel="stylesheet" type="text/css">
+    <link href="/css/open-iconic-bootstrap.css?v@php echo time(); @endphp" rel="stylesheet" type="text/css">
     <script src="/js/app.js?v@php echo time(); @endphp" crossorigin="anonymous"></script>
+    <script src="/js/fontawesome-all.js?v@php echo time(); @endphp" crossorigin="anonymous"></script>
 
     <style>
     	.logo {
@@ -29,10 +31,10 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">{{ UserInfo::get_company(1) }}</a>
+					<a class="nav-link" href="#">{{ UserInfo::get_company(Auth::user()->id) }}</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +61,7 @@
 						<a class="dropdown-item" href="#">Profile</a>
 						<a class="dropdown-item" href="#">Settings</a>
 						@role ('Administrator')
-						<a class="dropdown-item" href="#">Adminstration</a>
+						<a class="dropdown-item" href="/admin/index">Adminstration</a>
 						@endrole
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
