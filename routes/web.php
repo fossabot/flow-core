@@ -27,10 +27,30 @@ Route::post('/2fa', function () {
 
 Route::get('/register/invite', function () { return view('auth.invite'); })->name('register/invite');
 Route::post('/register/invite', 'Auth\RegisterController@checkInvite')->name('register/invite2');
+Route::get('/register/2fa', 'Auth\RegisterController@enable2fa')->name('register/2fa');
 Route::get('/register/complete', 'Auth\RegisterController@completeRegistration')->name('register/complete');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
+
+// Account Routes
+Route::get(
+	'account/activate/{token}', 
+	'Auth\ActivationController@activate'
+)->name('account.activate_acc');
+
+Route::get(
+    'account/activation/request',
+    'Auth\ActivationController@request'
+)->name('account.activation.request');
+
+Route::post(
+    'account/resend/activation',
+    'Auth\ActivationController@resend'
+)->name('account.activation.resend');
+
+Route::get('/2fa/enable', 'UserController@enableTwoFactor');
+Route::get('/2fa/disable', 'UserController@disableTwoFactor');
 
 // Utilities Route
 Route::get('/phpinfo', function () {

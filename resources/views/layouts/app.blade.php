@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Flow: @yield('title')</title>
 
-    <link href="/css/app.css?v@php echo time(); @endphp" rel="stylesheet" type="text/css">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="/css/open-iconic-bootstrap.css?v@php echo time(); @endphp" rel="stylesheet" type="text/css">
-    <script src="/js/app.js?v@php echo time(); @endphp" crossorigin="anonymous"></script>
+    <script src="{{ mix('/js/app.js') }}" crossorigin="anonymous"></script>
     <script src="/js/fontawesome-all.js?v@php echo time(); @endphp" crossorigin="anonymous"></script>
 
     <style>
@@ -33,23 +34,22 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">{{ UserInfo::get_company(Auth::user()->id) }}</a>
-				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Dropdown
+						System Admin
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a>
-						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="/users">Users</a>
+						<a class="dropdown-item" href="/companies">Companies</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">Something else here</a>
 					</div>
 				</li>
+				@foreach ( NavBuilder::build_nav(1) as $nav )
 				<li class="nav-item">
-					<a class="nav-link disabled" href="#">Disabled</a>
+					<a class="nav-link" href="{{ $nav->route }}">{{ $nav->module_name }}</a>
 				</li>
+				@endforeach
 			</ul>
 
 			<ul class="navbar-nav ml-auto float-right">
@@ -73,5 +73,7 @@
 	@endif
 
 	@yield('content')
+
+	@include('sweet::alert')
 </body>
 </html>

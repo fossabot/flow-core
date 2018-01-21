@@ -20,19 +20,17 @@
                             <div class="loginError" id="error" style="display: block;">
                                 <ul>
                                     @foreach($errors->all() as $error)
-                                        <li> {{ $error }} </li>
+                                    <li> {{ $error }} </li>
                                     @endforeach
                                 </ul>
                             </div>
                             @endisset
 
                             <div id="usernamegroup" class="inputgroup">
-                                <label for="username" class="label">Invite Code: {{ $invite_code }}</label>
-                                <input class="input r4 wide mb16 mt8 username" type="image" id="qr-image" style="display: block;" src="{{ $QR_Image }}">
-
-                                <a href="/register/complete"><btn class="button r4 wide primary" value="Register"></btn></a>
+                                <p class="label mb-3">Do You Want To Enable Two-Factor Authentication?</p>
+                                <a href="/register/2fa"><btn class="btn btn-primary">Yes</btn></a>
+                                <a href="/register/complete"><btn class="btn btn-primary primary">No</btn></a>
                             </div>
-
                         </form>
                     </div>
                 </div>

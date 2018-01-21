@@ -84,30 +84,18 @@ class RegisterController extends Controller
         //Validate the incoming request using the already included validator method
         $this->validator($request->all())->validate();
 
-        // Initialise the 2FA class
-        $google2fa = new Google2FA();
-
         // Save the registration data in an array
         $registration_data = $request->all();
 
         $registration_data["invite_code"] = session('invite_code');
-
-        // Add the secret key to the registration data
-        $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
+        $registration_data["google2fa_secret"] = null;
+        $registration_data["use_twofactor"] = false;
 
         // Save the registration data to the user session for just the next request
         $request->session()->flash('registration_data', $registration_data);
 
-        // Generate the QR image. This is the image the user will scan with their app
-     // to set up two factor authentication
-        $QR_Image = $google2fa->getQRCodeInline(
-            config('app.name'),
-            $registration_data['email'],
-            $registration_data['google2fa_secret']
-        );
-
         // Pass the QR barcode image to our view
-        return view('2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret'], 'invite_code' => $registration_data['invite_code']]);
+        return view('2fa.register');
     }
 
     public function completeRegistration(Request $request)
@@ -117,6 +105,28 @@ class RegisterController extends Controller
 
         // Call the default laravel authentication
         return $this->registration($request);
+    }
+
+    public function enable2fa(Request $request){
+        $request->merge(session('registration_data'));
+
+        $google2fa = new Google2FA();
+        $secret = $google2fa->generateSecretKey();
+
+        $registration_data = $request->all();
+        $registration_data["use_twofactor"] = true;
+        $registration_data["google2fa_secret"] = $secret;
+
+        $imageDataUri = $google2fa->getQRCodeInline(
+            config('app.name'),
+            $registration_data["email"],
+            $secret
+        );
+
+        $request->session()->flash('registration_data', $registration_data);
+
+        return view('2fa.enable', ['image' => $imageDataUri,
+            'secret' => $secret]);
     }
 
     /**
@@ -135,7 +145,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'company' => $data['company'],
             'address' => $data['address'],
-            'use_twofactor' => true,
+            'use_twofactor' => $data["use_twofactor"],
             'is_trial' => false,
             'twofactor_key' => $data['google2fa_secret']
         ]);

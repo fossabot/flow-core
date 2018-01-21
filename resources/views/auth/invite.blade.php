@@ -1,5 +1,7 @@
 @extends('layouts.login')
 
+@section('title', 'Invite Code')
+
 @section('content')
 
 <link href="/css/login.css?v@php echo time(); @endphp" rel="stylesheet" type="text/css">

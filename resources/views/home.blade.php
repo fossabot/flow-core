@@ -5,60 +5,20 @@
 @section('content')
 <link href="/css/accounts.css?v@php echo time(); @endphp" rel="stylesheet" type="text/css">
 
-<div class="container">
+<div class="container-fluid">
 	<div class="card d-none d-sm-none d-md-block">
 	  	<div class="card-body">
 	  		<div class="row no-gutters">
-	  			<div class="col-1">
-	  			</div>
 		  		<div class="col">
-		  			<div class="card-title text-muted font-opensans mb-0">ACCOUNT</div>
-	    			<h5 class="card-subtitle mb-2 font-opensans">Haskal Systems</h5>
+		  			<div class="card-title text-muted font-opensans mb-0">Welcome Back</div>
+	    			<h5 class="card-subtitle mb-2 font-opensans">{{ Auth::user()->name }}</h5>
 	    		</div>
-	    		<div class="col">
-	    			<div class="btn-group btn-group-sm float-right" role="group" aria-label="Basic example">
-	    				<button type="button" class="btn btn-secondary">Edit</button>
-	    				<button type="button" class="btn btn-secondary">New Contact</button>
-	    				<button type="button" class="btn btn-secondary">New Case</button>
-	    				<div class="btn-group btn-group-sm" role="group">
-	    					<button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-	    					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-	    						<a class="dropdown-item" href="#">Dropdown link</a>
-	    						<a class="dropdown-item" href="#">Dropdown link</a>
-	    					</div>
-	    				</div>
-	    			</div>
-				</div>
     		</div>
-	    	<div class="d-flex flex-row justify-content-around">
-			  	<div class="p-2">
-			  		<h6 class="text-muted font-opensans account-head font-weight-bold">Type</h6>
-			  		<span class="font-opensans">Test</span>
-			  	</div>
-			  	<div class="p-2">
-			  		<h6 class="text-muted font-opensans account-head font-weight-bold">Phone</h6>
-			  		<span class="font-opensans">(+60) 11-1008 6242</span>
-			  	</div>
-			  	<div class="p-2">
-			  		<h6 class="text-muted font-opensans account-head font-weight-bold">Website</h6>
-			  		<span class="font-opensans"><a href="#">Test</a></span>
-			  	</div>
-			  	<div class="p-2">
-			  		<h6 class="text-muted font-opensans account-head font-weight-bold">Account Owner</h6>
-			  		<span class="font-opensans"><a href="#">Test</a></span>
-			  	</div>
-			  	<div class="p-2">
-			  		<h6 class="text-muted font-opensans account-head font-weight-bold">Account Size</h6>
-			  		<span class="font-opensans"></span>
-			  	</div>
-			  	<div class="p-2">
-			  		<h6 class="text-muted font-opensans account-head font-weight-bold">Industry</h6>
-			  		<span class="font-opensans"></span>
-			  	</div>
-			</div>
 	  	</div>
 	</div>
+</div>
 
+<div class="container">
 	<div class="row mt-5">
 		<div class="col-8">
 			<div class="card">

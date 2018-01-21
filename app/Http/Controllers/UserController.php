@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 use Auth;
+use Crypt;
+use PragmaRX\Google2FA\Google2FA;
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -142,5 +144,52 @@ class UserController extends Controller {
         return redirect()->route('users.index')
             ->with('flash_message',
              'User successfully deleted.');
+    }
+
+    /*
+        Enables two-factor authentication
+    */
+    public function enableTwoFactor(Request $request)
+    {
+        $google2fa = new Google2FA();
+
+        //generate new secret
+        $secret = $google2fa->generateSecretKey();
+
+        //get user
+        $user = $request->user();
+
+        //encrypt and then save secret
+        $user->use_twofactor = true;
+        $user->twofactor_key = $secret;
+        $user->save();
+
+        //generate image for QR barcode
+        $imageDataUri = $google2fa->getQRCodeInline(
+            config('app.name'),
+            $user->email,
+            $secret
+        );
+
+        return view('account.enable2fa', ['image' => $imageDataUri,
+            'secret' => $secret]);
+    }
+
+    /**
+     * Disables two-factor authentication 
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function disableTwoFactor(Request $request)
+    {
+        $user = $request->user();
+
+        //make secret column blank
+        $user->use_twofactor = false;
+        $user->twofactor_key = null;
+        $user->save();
+
+        return view('account/disableTwoFactor');
     }
 }

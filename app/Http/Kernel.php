@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         '2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
         'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
+        'active' => \App\Http\Middleware\CheckActivationStatus::class,
     ];
 }

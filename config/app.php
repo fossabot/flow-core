@@ -231,6 +231,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Doorman' => Clarkeash\Doorman\Facades\Doorman::class,
         'UserInfo' => App\Helpers\Users\UserInfo::class,
+        'NavBuilder' => App\Helpers\Navigation\NavBuilder::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

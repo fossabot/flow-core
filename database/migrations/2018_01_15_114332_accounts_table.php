@@ -13,16 +13,16 @@ class AccountsTable extends Migration
      */
     public function up()
     {
-        Schema::table('accounts', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('acc_unique_id');
-            $table->int('company_id');
+            $table->integer('company_id');
             $table->string('acc_name');
-            $table->int('acc_owner');
-            $table->int('acc_parent');
+            $table->integer('acc_owner');
+            $table->integer('acc_parent');
             $table->text('billing_addr');
             $table->text('shipping_addr');
-            $table->int('annual_rev');
+            $table->integer('annual_rev');
             $table->timestamps();
         });
     }

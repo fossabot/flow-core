@@ -7,6 +7,8 @@
 
         <title>FLOW</title>
 
+        <script src="{{ mix('/js/app.js') }}" crossorigin="anonymous"></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -97,5 +99,7 @@
                 </div>
             </div>
         </div>
+
+        @include('sweet::alert')
     </body>
 </html>
