@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Alert;
+use Cache;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
+use App\Http\Requests\ValidateSecretRequest;
 
 class LoginController extends Controller
 {
@@ -40,22 +44,22 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Handle an authentication attempt.
-     *
-     * @return Response
-     */
-    public function authenticate()
-    {
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'use_twofactor' => true])) {
+    public function login(Request $request){
+        $data = $request->all();
+
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
             // Authentication passed...
             return redirect('home');
+        }else{
+            //echo bcrypt($data['password']);
+            return redirect('login');
         }
     }
 
     public function logout(Request $request){
         Auth::logout();
-        //(new Authenticator(request()))->logout();
+
+        Alert::success('Logged Out', 'Good bye!');
 
         return redirect('/');
     }

@@ -7,6 +7,8 @@
 
         <title>FLOW</title>
 
+        <script src="{{ mix('/js/app.js') }}" crossorigin="anonymous"></script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
@@ -82,7 +84,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('register/invite') }}">Register</a>
                     @endauth
                 </div>
             @endif
@@ -97,5 +99,7 @@
                 </div>
             </div>
         </div>
+
+        @include('sweet::alert')
     </body>
 </html>

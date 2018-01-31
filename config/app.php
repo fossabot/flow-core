@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Collective\Html\HtmlServiceProvider::class,
+        Clarkeash\Doorman\Providers\DoormanServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -176,7 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\UsersServiceProvider::class,
     ],
 
     /*
@@ -225,7 +227,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Doorman' => Clarkeash\Doorman\Facades\Doorman::class,
+        'UserInfo' => App\Helpers\Users\UserInfo::class,
+        'NavBuilder' => App\Helpers\Navigation\NavBuilder::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
