@@ -39,9 +39,9 @@ Then navigate to ```http://yourwebsite.com/install``` and follow the instruction
 ## Developing
 
 ### Branch
-The **[stable branch](https://github.com/HaskalSystems/flow-core/tree/master)** is extensively tested by our QA team and makes a great starting point for learning the system or deploying one. We work hard to make releases stable and reliable, and aim to publish new releases every few months.
+The **[stable branch](https://github.com/HaskalSystems/flow-core/tree/stable)** is extensively tested by our QA team and makes a great starting point for learning the system or deploying one. We work hard to make releases stable and reliable, and aim to publish new releases every few months.
 
-The **[master branch](https://github.com/HaskalSystems/flow-core/tree/develop)** is updated with the latest cutting-edge stuff. We try to update it daily (though we often catch things that prevent us from doing so) and it's a good balance between getting the latest cool stuff and knowing most things work.
+The **[master branch](https://github.com/HaskalSystems/flow-core/tree/master)** is updated with the latest cutting-edge stuff. We try to update it daily (though we often catch things that prevent us from doing so) and it's a good balance between getting the latest cool stuff and knowing most things work.
 
 Other short-lived branches may pop-up from time to time as we develop new features, hotfixes, and stabilize releases.
 
