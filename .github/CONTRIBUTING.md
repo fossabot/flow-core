@@ -105,10 +105,10 @@ A PR can only be merged into master by a maintainer if:
 Any maintainer is allowed to merge a PR if all of these conditions are
 met.
 
-[search the issue tracker]: https://github.com/haskalsystems/flow-core/issues?q=something
-[new issue]: https://github.com/haskalsystems/flow-core/issues/new
+[search the issue tracker]: https://github.com/HaskalSystems/flow-core/issues?q=something
+[new issue]: https://github.com/HaskalSystems/flow-core/issues/new
 [fork FLOW]: https://help.github.com/articles/fork-a-repo
-[searching all issues]: https://github.com/haskalsystems/flow-core/issues?q=
+[searching all issues]: https://github.com/HaskalSystems/flow-core/issues?q=
 [codeclimate]: https://codeclimate.com
 [codeclimate cli]: https://github.com/codeclimate/codeclimate
 [make a pull request]: https://help.github.com/articles/creating-a-pull-request
