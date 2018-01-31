@@ -1,0 +1,5 @@
+plugins:
+  phpcodesniffer:
+    enabled: true
+    config:
+      file_extensions: "php"

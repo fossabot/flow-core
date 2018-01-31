@@ -1,3 +1,6 @@
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/536ea8d54c0e931c59a6/maintainability)](https://codeclimate.com/github/HaskalSystems/flow-core/maintainability)
+
 # FLOW
 > The Next Generation ERP
 
