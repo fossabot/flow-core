@@ -34,6 +34,7 @@
 				<li class="nav-item active">
 					<a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
 				</li>
+				@role ('sys-admin')
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						System Admin
@@ -45,6 +46,7 @@
 						<a class="dropdown-item" href="#">Something else here</a>
 					</div>
 				</li>
+				@endrole
 				@foreach ( NavBuilder::build_nav(1) as $nav )
 				<li class="nav-item">
 					<a class="nav-link" href="{{ $nav->route }}">{{ $nav->module_name }}</a>

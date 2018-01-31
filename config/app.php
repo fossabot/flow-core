@@ -233,6 +233,7 @@ return [
         'UserInfo' => App\Helpers\Users\UserInfo::class,
         'NavBuilder' => App\Helpers\Navigation\NavBuilder::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

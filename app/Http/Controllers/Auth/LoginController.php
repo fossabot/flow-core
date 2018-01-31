@@ -44,6 +44,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login(Request $request){
+        $data = $request->all();
+
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {
+            // Authentication passed...
+            return redirect('home');
+        }else{
+            //echo bcrypt($data['password']);
+            return redirect('login');
+        }
+    }
+
     public function logout(Request $request){
         Auth::logout();
 
