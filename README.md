@@ -1,5 +1,5 @@
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/536ea8d54c0e931c59a6/maintainability)](https://codeclimate.com/github/HaskalSystems/flow-core/maintainability)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHaskalSystems%2Fflow-core.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FHaskalSystems%2Fflow-core?ref=badge_shield)
 
 # FLOW
 > The Next Generation ERP
@@ -48,3 +48,5 @@ Other short-lived branches may pop-up from time to time as we develop new featur
 ## Licensing
 
 FLOW is licensed using GPLv3. A copy of the License can be found [here](https://github.com/HaskalSystems/flow-core/LICENSE.md)
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FHaskalSystems%2Fflow-core.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FHaskalSystems%2Fflow-core?ref=badge_large)
